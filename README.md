@@ -69,7 +69,7 @@ The API documentation is provided using Swagger. Once the application is running
 
 ### Deployment
 
-API for vinyl record store is availiable on Heroku: `https://vinyl-store-01-d649f2e8fe3b.herokuapp.com/vinyl-records`.
+API for vinyl record store is availiable on Heroku: https://vinyl-store-01-d649f2e8fe3b.herokuapp.com/vinyl-records.
 
 ## Acceptance Criteria
 
