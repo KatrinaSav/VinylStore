@@ -9,6 +9,7 @@ import {
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
+import { Request } from 'express';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -33,8 +34,8 @@ export class AuthController {
   })
   @Post('logout')
   @AccessRoles([Roles.User, Roles.Admin])
-  async logout(@Req() req) {
-    req.session.destroy();
+  async logout(@Req() req: Request) {
+    req.session.destroy(() => {});
     return { msg: 'Successfully logged out' };
   }
 }

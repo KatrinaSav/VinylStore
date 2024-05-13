@@ -27,6 +27,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Request } from 'express';
 
 @ApiTags('user')
 @Controller('user')
@@ -67,8 +68,7 @@ export class UserController {
   ): Promise<User> {
     if (file)
       return await this.userService.updateProfileWithAvatar(userId, body, file);
-    else
-      return await this.userService.updateProfileWithAvatar(userId, body, file);
+    else return await this.userService.updateProfile(userId, body);
   }
 
   @ApiTags('Allowed role: User')
@@ -81,9 +81,9 @@ export class UserController {
   @Delete('profile')
   async deleteProfile(
     @ReqUser('id') userId: string,
-    @Req() req,
+    @Req() req: Request,
   ): Promise<User> {
-    req.session.destroy();
+    req.session.destroy(() => {});
     return await this.userService.deleteProfile(userId);
   }
 }

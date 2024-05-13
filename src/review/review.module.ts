@@ -5,6 +5,7 @@ import { ReviewController } from './review.controller';
 import { ReviewService } from './review.service';
 import { LogModule } from '../log/log.module';
 import { VinylRecordModule } from 'src/vinyl-record/vinyl-record.module';
+import { ReviewSubscriber } from './review.subscriber';
 @Module({
   imports: [
     TypeOrmModule.forFeature([Review]),
@@ -12,7 +13,7 @@ import { VinylRecordModule } from 'src/vinyl-record/vinyl-record.module';
     forwardRef(() => VinylRecordModule),
   ],
   controllers: [ReviewController],
-  providers: [ReviewService],
+  providers: [ReviewService, ReviewSubscriber],
   exports: [ReviewService],
 })
 export class ReviewModule {}
